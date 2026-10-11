@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b147lhaur1gql"]
+
+[ext_resource type="Texture2D" uid="uid://dmbtd7ruvn3b" path="res://assets/sprites/Double.png" id="1_56unc"]
+[ext_resource type="Script" path="res://scripts/double.gd" id="1_t8ca5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rayxv"]
+size = Vector2(30, 20)
+
+[node name="L_R_loss" type="Area2D"]
+script = ExtResource("1_t8ca5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_rayxv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(1, 1)
+texture = ExtResource("1_56unc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

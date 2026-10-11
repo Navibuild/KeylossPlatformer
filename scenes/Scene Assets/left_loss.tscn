@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://yqkrogjb6pm8"]
+
+[ext_resource type="Script" path="res://scripts/left_loss.gd" id="1_l0icu"]
+[ext_resource type="Texture2D" uid="uid://d1one5e88rtlw" path="res://assets/sprites/pixil-frame-0.png" id="2_3uwyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rh47d"]
+
+[node name="left_loss" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_l0icu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_rh47d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+rotation = -1.5708
+texture = ExtResource("2_3uwyc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

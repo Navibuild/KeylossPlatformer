@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://beu13swepmcub"]
+
+[ext_resource type="Script" path="res://scripts/jump_loss.gd" id="1_hj4ud"]
+[ext_resource type="Texture2D" uid="uid://d1one5e88rtlw" path="res://assets/sprites/pixil-frame-0.png" id="2_bw1nw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnxs0"]
+
+[node name="Jump_loss" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_hj4ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_mnxs0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_bw1nw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
