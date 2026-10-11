@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://tu2bm5d7bpqv"]
+[gd_scene load_steps=20 format=4 uid="uid://tu2bm5d7bpqv"]
 
 [ext_resource type="Texture2D" uid="uid://d0q2g65ahgok" path="res://assets/sprites/world_tileset.png" id="1_0idmi"]
 [ext_resource type="PackedScene" uid="uid://wtp6o35exoof" path="res://scenes/Scene Assets/goal_list.tscn" id="2_7dofu"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d0esyl2klp2ox" path="res://scenes/Scene Assets/pause_menu.tscn" id="8_bju7x"]
 [ext_resource type="PackedScene" uid="uid://beu13swepmcub" path="res://scenes/Scene Assets/jump_loss.tscn" id="9_7884u"]
 [ext_resource type="PackedScene" uid="uid://bgv5v2fxqlswe" path="res://scenes/Scene Assets/platform.tscn" id="10_reg84"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="99_level"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4jls0"]
 texture = ExtResource("1_0idmi")
@@ -383,6 +384,7 @@ _data = {
 }
 
 [node name="level_5" type="Node2D"]
+script = ExtResource("99_level")
 
 [node name="TileMap" type="Node" parent="."]
 
@@ -396,6 +398,12 @@ tile_set = SubResource("TileSet_8yaj4")
 z_index = -4000
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD//wUAAAAAAAAAAAD//wYAAAAAAAEAAAD//wcAAAAAAAEAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAEAAAAKAAcAAAABAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAEAAAANAAcAAAABAAAAAAAOAAUAAAAAAAAAAAAOAAYAAAAAAAEAAAAOAAcAAAAAAAEAAAD+/wcAAAAAAAEAAAD+/wYAAAAAAAEAAAD+/wUAAAAAAAAAAAD5/wUAAAAAAAAAAAD6/wUAAAAAAAAAAAD7/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wUAAAAAAAAAAAD4/wUAAAAAAAAAAAD4/wQAAAAAAAEAAAD4/wMAAAAAAAEAAAD4/wIAAAAAAAEAAAD4/wEAAAAAAAEAAAD4/wAAAAAAAAEAAAD4////AAAAAAEAAAD4//7/AAAAAAEAAAD4//3/AAAAAAEAAAD4//z/AAAAAAEAAAD4//v/AAAAAAEAAAD4//r/AAAAAAEAAAD4//n/AAAAAAEAAAD4/wYAAAAAAAEAAAD5/wYAAAAAAAEAAAD6/wYAAAAAAAEAAAD7/wYAAAAAAAEAAAD8/wYAAAAAAAEAAAD9/wYAAAAAAAEAAAD9/wcAAAAAAAEAAAD8/wcAAAABAAEAAAD7/wcAAAAAAAEAAAD6/wcAAAAAAAEAAAD5/wcAAAABAAAAAAD4/wcAAAAAAAEAAAD4/wgAAAABAAAAAAD5/wgAAAABAAAAAAD6/wgAAAAAAAEAAAD7/wgAAAAAAAEAAAD8/wgAAAAAAAEAAAD9/wgAAAAAAAEAAAD+/wgAAAAAAAEAAAD//wgAAAAAAAEAAAALAAcAAAAAAAEAAAAMAAcAAAABAAEAAAAPAAgAAAAAAAEAAAAQAAgAAAABAAAAAAAOAAgAAAAAAAEAAAANAAgAAAAAAAEAAAAMAAgAAAAAAAEAAAALAAgAAAABAAAAAAAKAAgAAAAAAAEAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAYAAAABAAEAAAAPAAYAAAAAAAEAAAAMAAYAAAAAAAEAAAALAAYAAAAAAAEAAAAPAAcAAAAAAAEAAAAQAAcAAAAAAAEAAAAQAAQAAAAAAAEAAAAQAAMAAAAAAAEAAAAQAAIAAAAAAAEAAAAQAAEAAAAAAAEAAAAQAAAAAAAAAAEAAAAQAP7/AAAAAAEAAAAQAP3/AAAAAAEAAAAQAP//AAAAAAEAAAAQAPv/AAAAAAEAAAAQAPr/AAAAAAEAAAAQAPz/AAAAAAEAAAAQAPn/AAAAAAEAAAD5//n/AAAAAAEAAAD6//n/AAAAAAEAAAD7//n/AAAAAAEAAAD8//n/AAAAAAEAAAD9//n/AAAAAAEAAAD+//n/AAAAAAEAAAD///n/AAAAAAEAAAAAAPn/AAAAAAEAAAABAPn/AAAAAAEAAAACAPn/AAAAAAEAAAADAPn/AAAAAAEAAAAEAPn/AAAAAAEAAAAFAPn/AAAAAAEAAAAGAPn/AAAAAAEAAAAHAPn/AAAAAAEAAAAIAPn/AAAAAAEAAAAJAPn/AAAAAAEAAAAKAPn/AAAAAAEAAAALAPn/AAAAAAEAAAAMAPn/AAAAAAEAAAANAPn/AAAAAAEAAAAOAPn/AAAAAAEAAAAPAPn/AAAAAAEAAAAAAAQAAAAIAAMAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_wvtw0")
+
+[node name="Deco" type="TileMapLayer" parent="TileMap"]
+z_index = -3995
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAHAPb/AAAAAAMAAAAKAPb/AAAAAAMAAAAHAPf/AAAAAAQAAAAKAPf/AAAAAAQAAAAHAPj/AAAAAAUAAAAKAPj/AAAAAAUAAAAMAAQAAAAIAAYAAAA=")
 tile_set = SubResource("TileSet_wvtw0")
 
 [node name="Goal_list" parent="." instance=ExtResource("2_7dofu")]
@@ -452,13 +460,6 @@ script = ExtResource("7_hffky")
 unique_name_in_owner = true
 process_mode = 3
 visible = false
-anchors_preset = 11
-anchor_left = 1.0
-offset_left = 71.0
-offset_top = -2.0
-offset_right = 71.0
-offset_bottom = -2.0
-grow_horizontal = 0
 
 [node name="Jump_loss" parent="." instance=ExtResource("9_7884u")]
 position = Vector2(-56, 80)

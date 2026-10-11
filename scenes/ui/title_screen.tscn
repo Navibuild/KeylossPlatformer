@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://ddjis1cy3wtrf"]
+
+[ext_resource type="Script" uid="uid://bqpjxmtgjempq" path="res://scripts/title_screen.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/ui/theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/ui/menu_backdrop.tscn" id="3_backdrop"]
+
+[node name="TitleScreen" type="Control" unique_id=970973721]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="MenuBackdrop" parent="." unique_id=1243172274 instance=ExtResource("3_backdrop")]
+
+[node name="Actors" type="Node2D" parent="." unique_id=1160092723]
+scale = Vector2(3, 3)
+
+[node name="Logo" type="HBoxContainer" parent="." unique_id=1885423716]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 66.0
+offset_bottom = 146.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Tagline" type="Label" parent="." unique_id=1285908464]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 168.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.886, 0.541, 1)
+theme_override_font_sizes/font_size = 16
+text = "SACRIFICES MUST BE MADE"
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=773030407]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 228.0
+offset_right = 150.0
+offset_bottom = 420.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="Play" type="Button" parent="Menu" unique_id=51574417]
+layout_mode = 2
+text = "Play"
+
+[node name="LevelSelect" type="Button" parent="Menu" unique_id=1309080540]
+layout_mode = 2
+text = "Level Select"
+
+[node name="Quit" type="Button" parent="Menu" unique_id=1251873096]
+layout_mode = 2
+text = "Quit"
+
+[node name="Progress" type="Label" parent="." unique_id=1555660324]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -42.0
+offset_right = 418.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "0 / 15 LEVELS CLEARED"
+
+[node name="Controls" type="Label" parent="." unique_id=724791990]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -718.0
+offset_top = -42.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "ARROWS/A D MOVE   SPACE JUMP   R RESTART   M MUTE"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="Menu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]

@@ -132,29 +132,108 @@ func _ready():
 		jump_buffer_timer.wait_time = jump_buffer
 		jump_buffer_timer.one_shot = true
 
+	jumped.connect(_on_jumped)
+	hit_ground.connect(_on_hit_ground)
 
-func _input(_event):
-	acc.x = 0
-	if Input.is_action_pressed(input_left):
-		if(bool_left):
-			acc.x = -max_acceleration
-	
-	if Input.is_action_pressed(input_right):
-		if (bool_right):
-			acc.x = max_acceleration
-	
+
+# --- Feedback (visual/audio only; doesn't change how the player moves) -------
+
+var _squash_tween: Tween
+var _dead := false
+
+
+func _squash(amount: Vector2) -> void:
+	if _squash_tween:
+		_squash_tween.kill()
+	animated_sprite_2d.scale = amount
+	_squash_tween = create_tween()
+	_squash_tween.tween_property(animated_sprite_2d, "scale", Vector2.ONE, 0.18) \
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func _on_jumped(_is_ground_jump: bool) -> void:
+	Game.sfx("jump", -10.0)
+	FX.dust(get_parent(), global_position, 5)
+	_squash(Vector2(0.8, 1.2))
+
+
+func _on_hit_ground() -> void:
+	if not is_inside_tree() or _dead:
+		return
+	FX.dust(get_parent(), global_position, 4)
+	_squash(Vector2(1.2, 0.85))
+
+
+## Called by killzones. The killzone removes the collision shape, so we fall away.
+func die() -> void:
+	if _dead:
+		return
+	_dead = true
+	Game.sfx("hurt", -2.0)
+	Game.shake(3.5, 0.35)
+	FX.burst(get_parent(), global_position + Vector2(0, -8),
+		[Color("e8e8f0"), Color("b8b8c8"), Color("d03a3a")], 18, 80.0, 0.6, 200.0)
+	velocity = Vector2(0, -jump_velocity * 0.6)
+	animated_sprite_2d.modulate = Color(3, 1.2, 1.2)
+	var t := create_tween()
+	t.tween_property(animated_sprite_2d, "modulate", Color(1, 0.4, 0.4, 0.0), 0.5)
+	t.parallel().tween_property(animated_sprite_2d, "rotation", deg_to_rad(-120.0), 0.5)
+
+
+## After you sacrifice a direction while holding its key, you keep sliding that
+## way for this many seconds (or until you let go). It's a fixed time so the
+## puzzles play the same on every keyboard, instead of depending on the OS
+## key-repeat delay.
+@export var sacrifice_carry_time := 0.6
+var _carry_dir := 0
+var _carry_left := 0.0
+
+
+func _input(event):
+	# Only real button presses/releases matter. Key-repeat echoes and mouse
+	# movement used to reset movement here, which cut the slide short.
+	if event.is_echo() or not (event is InputEventKey or event is InputEventJoypadButton \
+			or event is InputEventJoypadMotion or event is InputEventAction):
+		return
+	_update_horizontal()
+
 	if Input.is_action_just_pressed(input_jump):
 		if(bool_jump):
 			holding_jump = true
 			start_jump_buffer_timer()
 			if (not can_hold_jump and can_ground_jump()) or can_double_jump():
 				jump()
-		
+
 	if Input.is_action_just_released(input_jump):
 		holding_jump = false
 
 
+func _update_horizontal() -> void:
+	acc.x = 0
+	if Input.is_action_pressed(input_left):
+		if bool_left or (_carry_dir < 0 and _carry_left > 0.0):
+			acc.x = -max_acceleration
+
+	if Input.is_action_pressed(input_right):
+		if bool_right or (_carry_dir > 0 and _carry_left > 0.0):
+			acc.x = max_acceleration
+
+
+## Called by a LossBlock when it takes an input.
+func on_input_sacrificed(action: String) -> void:
+	if action == input_left or action == input_right:
+		_carry_dir = -1 if action == input_left else 1
+		_carry_left = sacrifice_carry_time
+		_update_horizontal()
+
+
 func _physics_process(delta):
+	if _carry_left > 0.0:
+		_carry_left -= delta
+		if _carry_left <= 0.0:
+			_carry_dir = 0
+			_update_horizontal()
+
 	var direct = Input.get_axis("move_left","move_right")
 	# Flips sprite
 	if direct > 0:

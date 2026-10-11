@@ -1,10 +1,6 @@
-extends Label
+extends "res://scripts/labelfadein.gd"
+## Same as labelfadein.gd, but starts after the first label has had time to appear.
 
-func _ready() -> void:
-	self.visible_ratio = 0
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	await get_tree().create_timer(2.5).timeout
-	self.visible_ratio += 0.005
-	
-	
+
+func _init() -> void:
+	delay = 2.5

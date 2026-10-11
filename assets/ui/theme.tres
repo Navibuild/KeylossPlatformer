@@ -1,0 +1,109 @@
+[gd_resource type="Theme" format=3 uid="uid://ca36c0c5cdn1g"]
+
+[ext_resource type="FontFile" uid="uid://c53kogtyjwsss" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_font"]
+[ext_resource type="Texture2D" uid="uid://dd1yuym2uek16" path="res://assets/ui/btn_normal.png" id="2_normal"]
+[ext_resource type="Texture2D" uid="uid://dtwcp0mwpkssa" path="res://assets/ui/btn_hover.png" id="3_hover"]
+[ext_resource type="Texture2D" uid="uid://epwwtkekhjfi" path="res://assets/ui/btn_pressed.png" id="4_pressed"]
+[ext_resource type="Texture2D" uid="uid://xnskq1ohwuy7" path="res://assets/ui/btn_disabled.png" id="5_disabled"]
+[ext_resource type="Texture2D" uid="uid://du54ilx3dyjy6" path="res://assets/ui/panel.png" id="6_panel"]
+[ext_resource type="Texture2D" uid="uid://cvtewpwg40f3e" path="res://assets/ui/panel_light.png" id="7_panel_light"]
+[ext_resource type="Texture2D" uid="uid://durtc7l1jwws0" path="res://assets/ui/btn_focus.png" id="8_focus"]
+
+[sub_resource type="StyleBoxTexture" id="Btn_disabled"]
+content_margin_left = 21.0
+content_margin_top = 6.0
+content_margin_right = 21.0
+content_margin_bottom = 15.0
+texture = ExtResource("5_disabled")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="Btn_focus"]
+texture = ExtResource("8_focus")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="Btn_hover"]
+content_margin_left = 21.0
+content_margin_top = 6.0
+content_margin_right = 21.0
+content_margin_bottom = 15.0
+texture = ExtResource("3_hover")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="Btn_pressed"]
+content_margin_left = 21.0
+content_margin_top = 12.0
+content_margin_right = 21.0
+content_margin_bottom = 9.0
+texture = ExtResource("4_pressed")
+texture_margin_left = 9.0
+texture_margin_top = 15.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="Btn_normal"]
+content_margin_left = 21.0
+content_margin_top = 6.0
+content_margin_right = 21.0
+content_margin_bottom = 15.0
+texture = ExtResource("2_normal")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="Panel"]
+content_margin_left = 18.0
+content_margin_top = 15.0
+content_margin_right = 18.0
+content_margin_bottom = 15.0
+texture = ExtResource("6_panel")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="Panel_light"]
+content_margin_left = 15.0
+content_margin_top = 9.0
+content_margin_right = 15.0
+content_margin_bottom = 9.0
+texture = ExtResource("7_panel_light")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+
+[resource]
+default_font = ExtResource("1_font")
+default_font_size = 24
+Button/colors/font_color = Color(0.227, 0.165, 0.165, 1)
+Button/colors/font_disabled_color = Color(0.604, 0.627, 0.722, 1)
+Button/colors/font_focus_color = Color(0.227, 0.165, 0.165, 1)
+Button/colors/font_hover_color = Color(0.42, 0.2, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0.42, 0.2, 0, 1)
+Button/colors/font_pressed_color = Color(0.42, 0.2, 0, 1)
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 24
+Button/styles/disabled = SubResource("Btn_disabled")
+Button/styles/focus = SubResource("Btn_focus")
+Button/styles/hover = SubResource("Btn_hover")
+Button/styles/hover_pressed = SubResource("Btn_pressed")
+Button/styles/normal = SubResource("Btn_normal")
+Button/styles/pressed = SubResource("Btn_pressed")
+Label/colors/font_color = Color(0.953, 0.918, 0.847, 1)
+Label/colors/font_outline_color = Color(0.055, 0.051, 0.075, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/outline_size = 6
+Label/font_sizes/font_size = 24
+PanelContainer/styles/panel = SubResource("Panel")
+PanelLight/base_type = &"PanelContainer"
+PanelLight/styles/panel = SubResource("Panel_light")
